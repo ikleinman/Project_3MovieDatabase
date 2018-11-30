@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Data</title>
+
+
+  <!--link type="text/css" rel="stylesheet" href="reset.css"Importing leaflet-->
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+  <link type="text/css" rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
+</head>
+
+<body>
+
+  <!-- The div that holds our map -->
+  <div id="map-id"></div>
+
+  <!-- D3 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
+
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <a class="navbar-brand" id="nav-brand" href="index.html">Weather Data</a>
+      </div>
+
+      <div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plots
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="temp.html">Map</a></li>
+                  <li><a href="humidity.html">Directors Table</a></li>
+                  <li><a href="cloudiness.html">Graphs</a></li>
+                  <li><a href="wind.html">Wind Speed</a></li>
+                </ul>
+            </li>
+          <li><a href="comparison.html">Comparison</a></li>
+          <li><a href="data.html">Data</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </nav>
+
+  <main class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 back-container" id="landing-summary">
+          <header>
+              <h1 id="summary-title">Summary: Latitude vs. X</h1>
+          </header>
+          <hr>
+          <section id="summary-text">
+            <section>
+              <img id="summary-plot" src="./Resources/Fig1.png" alt="Temp Plot" width = "300" height = "300">
+            </section>
+            <p>The purpose of this project is to analyze how weather changes as you get closer to the equator. To accomplish this anlaysis, we first pulled data from
+                OpenWeatherMap API to assemble a dataset on over 500 cities. </p>
+            <p> After assembling the dataset, we used Matplotlib to plot various aspect of the weather vs. latitude. Factors we looked at included: temperature, cloudiness, wind speed and humidity. This site provides source data and
+                visualiations created as part of the analysis and explanation/details of any trends and correlations witnessed.</p>
+          </section>
+      </div>
+      <!--Visulizations side panel-->
+      <div class="col-md-4 back-container" id="side-panel">
+              <h2 id="side-panel-title">Visualizations</h2>
+              <hr>
+              <div class="row">
+                <a href="temp.html">
+                  <div class="thumbnail viz-plot">
+                      <img src="./Resources/Fig1.png" alt="Temp Plot">
+                  </div>
+                </a>
+                <a href="humidity.html">
+                    <div class="thumbnail viz-plot">
+                        <img src="./Resources/Fig2.png" alt="Humidity Plot">
+                    </div>
+                </a>
+                <a href="cloudiness.html">
+                    <div class="thumbnail viz-plot">
+                        <img src="./Resources/Fig3.png" alt="Cloud Plot">
+                    </div>
+                </a>
+                <a href="wind.html">
+                    <div class="thumbnail viz-plot">
+                        <img src="./Resources/Fig4.png" alt="Wind Plot">
+                    </div>
+                </a>
+              </div>
+    </div>
+  </main>
+
+</body>
+
+</html>
