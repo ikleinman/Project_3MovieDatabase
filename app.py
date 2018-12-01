@@ -3,7 +3,8 @@ import numpy as np
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
-from sqlalchemy import create_engine, func
+from sqlalchemy import create_engine, func,
+from sqlalchemy.sql import label
 
 from flask import Flask, jsonify, render_template, redirect
 
@@ -28,8 +29,8 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def index():
-    #put stuff here
+def index()
+    return render_template("Index.html")
 @app.route("/map")
 def map():
     country_data = session.query(label("total_movies", func.count(Movies.movie_title)),\
