@@ -16,6 +16,7 @@ Our three views will be the following:
 
 2. A line graph displaying the y -axis as gross and x-axis as year with a dynamic parameter line that toggles between rating and genre. 
 
-3. This view is to display data specifically for directors. Users should be able to select using an autocomplete drop down to pull data on specific directors. 
+3. This view is to display data specifically for directors. Users should be able to query a table that will show director data matched with the entire dataset. For exmaple, if a user wanted to see which movies James Cameron directed, how much each film grossed, etc. they should be able to do this within this view. 
 
 A link to the primary GitHub repository you'll be housing your work in
+https://github.com/jnovic/Project_3MovieDatabase.git
