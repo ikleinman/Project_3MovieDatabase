@@ -19,3 +19,4 @@ Our three views will be the following:
 3. This view is to display data specifically for directors. Users should be able to select using an autocomplete drop down to pull data on specific directors. 
 
 A link to the primary GitHub repository you'll be housing your work in
+https://github.com/jnovic/Project_3MovieDatabase.git
