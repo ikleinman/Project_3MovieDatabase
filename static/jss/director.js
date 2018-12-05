@@ -20,23 +20,22 @@ var svg = d3
   .append("svg")
   .attr("height", svgHeight)
   .attr("width", svgWidth);
-
 // Append a group to the SVG area and shift ('translate') it to the right and down to adhere
 // to the margins set in the "chartMargin" object.
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
 
-// Load data from hours-of-tv-watched.csv
-d3.csv("hours-of-tv-watched.csv", function(error, tvData) {
+// Load data from movie_data.csv
+d3.csv("../movie_data.csv", function(error, movie_Data) {
 
   // Log an error if one exists
   if (error) return console.warn(error);
 
   // Print the tvData
-  console.log(tvData);
+  console.log(movie_data);
 
   // Cast the hours value to a number for each piece of tvData
-  tvData.forEach(function(data) {
+  movie_data.forEach(function(data) {
     data.hours = +data.hours;
   });
 
@@ -45,11 +44,11 @@ d3.csv("hours-of-tv-watched.csv", function(error, tvData) {
 
   // @TODO
   // Create a 'barWidth' variable so that the bar chart spans the entire chartWidth.
-  var barWidth = (chartWidth - (barSpacing * (tvData.length - 1))) / tvData.length;
+  var barWidth = (chartWidth - (barSpacing * (movie_data.length - 1))) / movie_data.length;
 
   // Create code to build the bar chart using the tvData.
   chartGroup.selectAll(".bar")
-    .data(tvData)
+    .data(movie_data)
     .enter()
     .append("rect")
     .classed("bar", true)
