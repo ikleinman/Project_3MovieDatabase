@@ -94,3 +94,6 @@ def directors():
                 "Latitude":d[8],
                 "Longitude":d[9]})
     return jsonify(data3)
+
+if __name__ == '__main__':
+    app.run(debug=True)
