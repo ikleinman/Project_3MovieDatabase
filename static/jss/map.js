@@ -22,8 +22,4 @@ var map = L.map("map-id", {
   zoom: 12,
   layers: [lightmap, movie_locations]
 });
-
-L.control.layers(baseMaps, overlayMaps, {
-  collapsed: false
-}).addTo(map);
 }
