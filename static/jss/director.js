@@ -1,118 +1,60 @@
-<!DOCTYPE html>
-<html lang="en-us">
-<head>
-  <meta charset="UTF-8">
-  <title>Movie Data</title>
+// Define SVG area dimensions
+var svgWidth = 960;
+var svgHeight = 660;
 
+// Define the chart's margins as an object
+var chartMargin = {
+  top: 30,
+  right: 30,
+  bottom: 30,
+  left: 30
+};
 
-  <!--link type="text/css" rel="stylesheet" href="reset.css"Importing leaflet-->
+// Define dimensions of the chart area
+var chartWidth = svgWidth - chartMargin.left - chartMargin.right;
+var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
 
-  <link type="text/css" rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
-</head>
+// Select body, append SVG area to it, and set the dimensions
+var svg = d3
+  .select("body")
+  .append("svg")
+  .attr("height", svgHeight)
+  .attr("width", svgWidth);
 
-<body>
+// Append a group to the SVG area and shift ('translate') it to the right and down to adhere
+// to the margins set in the "chartMargin" object.
+var chartGroup = svg.append("g")
+  .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
 
-  <!-- The div that holds our map -->
-  <div id="map-id"></div>
+// Load data from hours-of-tv-watched.csv
+d3.csv("hours-of-tv-watched.csv", function(error, tvData) {
 
-  <!--navbar bootstrap-->
+  // Log an error if one exists
+  if (error) return console.warn(error);
 
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
+  // Print the tvData
+  console.log(tvData);
 
-      <div class="navbar-header">
-        <a class="navbar-brand" id="nav-brand" href="index.html">Film Data</a>
-      </div>
+  // Cast the hours value to a number for each piece of tvData
+  tvData.forEach(function(data) {
+    data.hours = +data.hours;
+  });
 
-      <div>
+  var barSpacing = 10; // desired space between each bar
+  var scaleY = 10; // 10x scale on rect height
 
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="/templates/Map.html">Map</a></li>
-                  <li><a href="templates/Directors.html">Directors Table</a></li>
-                  <li><a href="templates/Graphs.html">Graphs</a></li>
-                </ul>
-            </li>
+  // @TODO
+  // Create a 'barWidth' variable so that the bar chart spans the entire chartWidth.
+  var barWidth = (chartWidth - (barSpacing * (tvData.length - 1))) / tvData.length;
 
-          <li><a href="templates/data.html">Data</a></li>
-        </ul>
-      </div>
-
-    </div>
-
-  </nav>
-
-  <main class="container-fluid">
-    <div class="row">
-        <div class="col-md-6 back-container" id="landing-summary">
-          <header>
-              <h1 id="summary-title">Summary of Project</h1>
-          </header>
-          <hr>
-          <section id="summary-text">
-            <section>
-              <img id="summary-image" src="./Resources/Are-you-not-entertained.png" alt="meme" width = "300" height = "300">
-            </section>
-            <p>The purpose of this project is to display the international film market and expose which countries are producing
-            films yadda yadda yadda. </p>
-            <p> After assembling the dataset, we used SQLite to set up a database to serve our data to our Visualizations.</p>
-          </section>
-      </div>
-      <!--Visulizations side panel-->
-      <!--div class="col-md-4 back-container" id="side-panel">
-              <h2 id="side-panel-title">Visualizations</h2>
-              <hr>
-              <div class="row">
-                <a href="Map.html">
-                  <div class="thumbnail viz-plot">
-                      <img src="./Resources/Fig1.png" alt="Map">
-                  </div>
-                </a>
-                <a href="Directors.html">
-                    <div class="thumbnail viz-plot">
-                        <img src="./Resources/Fig2.png" alt="Directors">
-                    </div>
-                </a>
-                <a href="Graphs.html">
-                    <div class="thumbnail viz-plot">
-                        <img src="./Resources/Fig3.png" alt="Graph">
-                    </div>
-                </a>
-
-              </div>
-    </div-->
-  </main>
-
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-  <!-- Latest compiled and minified JavaScript -->
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
-  <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
-  <!-- API Key -->
-    <script type="text/javascript" src="static/js/config.js"></script>
-    <!-- Our JavaScript -->
-    <script type="text/javascript" src="static/js/logic.js"></script>
-</body>
-
-</html>
+  // Create code to build the bar chart using the tvData.
+  chartGroup.selectAll(".bar")
+    .data(tvData)
+    .enter()
+    .append("rect")
+    .classed("bar", true)
+    .attr("width", d => barWidth)
+    .attr("height", d => d.hours * scaleY)
+    .attr("x", (d, i) => i * (barWidth + barSpacing))
+    .attr("y", d => chartHeight - d.hours * scaleY);
+});
