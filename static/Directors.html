@@ -7,7 +7,7 @@
 
   <!--link type="text/css" rel="stylesheet" href="reset.css"Importing leaflet-->
 
-  <link type="text/css" rel="stylesheet" href="CSS/style.css">
+  <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css"
 
 </head>
@@ -58,8 +58,30 @@
           </section>
       </div>
        <!-- The div that holds our tabe -->
-  <div id="table"></div>
-
+       <div class="col-md-10">
+        <div id="table-area">
+          <table id="director-table" >
+            <thead>
+              <tr>
+                <th class="table-head">Movie Title</th>
+                <th class="table-head">Director Name</th>
+                <th class="table-head">Gross</th>
+                <th class="table-head">Genres</th>
+                <th class="table-head">Country</th>
+                <th class="table-head">Content Rating</th>
+                <th class="table-head">Budget</th>
+                <th class="table-head">Title Year</th>
+                <th class="table-head">Latitude</th>
+                <th class="table-head">Longitude</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+   
     </div>
   </main>
 
@@ -77,7 +99,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"</script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="jss/director.js"></script>
 
 <script src="https://d3js.org/d3.v5.min.js"></script>
 
