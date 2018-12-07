@@ -1,3 +1,43 @@
+// Dataset we will be using to set the height of our rectangles.
+var url = "http://127.0.0.1:5000/data";
+// Fetch the JSON data and console log it
+function buildPlot() {
+  d3.json(url).then(function(response) {
+
+    console.log(response);
+    var trace = {
+      type: "line",
+      mode: "lines",
+      name: "Graphs",
+      x: response.map(data => data.title_year),
+      y: response.map(data => data.gross),
+      line: {
+        color: "#17BECF"
+      }
+    };
+
+    var data = [trace];
+
+    var layout = {
+      title: "Movie Year and Budget Bar Graph",
+      xaxis: {
+        type: "date"
+      },
+      yaxis: {
+        autorange: true,
+        type: "linear"
+      }
+    };
+
+    Plotly.newPlot("plot", data, layout);
+  });
+}
+
+buildPlot();
+
+
+
+
 
 // // Define SVG area dimensions
 // var svgWidth = 960;
@@ -362,24 +402,24 @@
 
 // C:\Users\ekare\CWCL201807DATA2-Class-Repository-DATA\15-Interactive-Visualizations-and-Dashboards\3\Activities\03-Ins_Fullstack_Flask_Plotly\Solved\static\js
 // Plot the default route once the page loads
-var defaultURL = "http://127.0.0.1:5000";
-d3.json(defaultURL).then(function(data) {
-  var data = [data];
-  var layout = { margin: { t: 30, b: 100 } };
-  Plotly.plot("bar", data, layout);
-});
+// var defaultURL = "http://127.0.0.1:5000";
+// d3.json(defaultURL).then(function(data) {
+//   var data = [data];
+//   var layout = { margin: { t: 30, b: 100 } };
+//   Plotly.plot("bar", data, layout);
+// });
 
-// Update the plot with new data
-function updatePlotly(newdata) {
-  Plotly.restyle("bar", "x", [newdata.x]);
-  Plotly.restyle("bar", "y", [newdata.y]);
-}
+// // Update the plot with new data
+// function updatePlotly(newdata) {
+//   Plotly.restyle("bar", "x", [newdata.x]);
+//   Plotly.restyle("bar", "y", [newdata.y]);
+// }
 
-// Get new data whenever the dropdown selection changes
-function getData(route) {
-  console.log(route);
-  d3.json(`/${route}`).then(function(data) {
-    console.log("newdata", data);
-    updatePlotly(data);
-  });
-}
+// // Get new data whenever the dropdown selection changes
+// function getData(route) {
+//   console.log(route);
+//   d3.json(`/${route}`).then(function(data) {
+//     console.log("newdata", data);
+//     updatePlotly(data);
+//   });
+// }
