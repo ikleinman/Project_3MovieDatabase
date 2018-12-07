@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
 </head>
 
+
 <body>
 
 
@@ -18,7 +19,7 @@
         <a class="navbar-brand" id="nav-brand" href="index.html">Film Data</a>
       </div>
 
-      <div>
+       <div>
 
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -35,21 +36,31 @@
           <li><a href="data.html">Data</a></li>
         </ul>
       </div>
-
     </div>
-
   </nav>
 
   <main class="container-fluid">
     <div class="row">
         <div class="col-md-6 back-container" id="landing-summary">
           <header>
-              <h1 id="summary-title">Graph's Page</h1>
-              </header>
+              <div class="row">
+                  <div class="column">
+                    <img src="/Resources/film_roll1.png" alt="film" style="width:100%">
+                  </div>
+                  <div class="column">
+                    <img src="/Resources/film_roll2.png" alt="film" style="width:100%">
+                  </div>
+                  <div class="column">
+                    <img src="/Resources/film_roll3.png" alt="film" style="width:100%">
+                  </div>
+                </div>
+
+                        <h1 id="summary-title">Graph's Page</h1>
+                           </header>
           <hr>
-          <section id="summary-text">
+             <section id="summary-text">
             <p>GRAPHS </p>
-            <p> After assembling the dataset, we used SQLite to set up a database to serve our data to our Visualizations.</p>
+            <p> Use the filters below to interact with with the visuals.</p>
           </section>
       </div>
 
