@@ -1,14 +1,37 @@
 var url = "http://localhost:5000/data";
 
-var data = d3.json(url).then(function(data) {
+var saveData;
+d3.json(url).then(function(data) {
   console.log(data);
 
   createMarkers(data)
-  
+  saveData = data;
+
+  //Groupby Country in data
+  var groupBy = function(xs, key) {
+  return xs.reduce(function(rv, x) {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};
+var groubedByCountry=groupBy(saveData, 'country')
+console.log(groubedByCountry);
+
+//Looping through country, gross, and budget for tooltip
+  var countryGross = []
+  var countryBudget = []
+
+
+  for (var g = 0; g < saveData.length; g++){
+    var unicorn = saveData[g]['gross']
+    var gross = 0;
+    countryGross.push(saveData[g]['gross'])
+  };
+  console.log(countryGross);
  })
 
  //console.log(data);
-
+//create map
   var map = L.map("map-id", {
     center: [15.3265, -76.157],
     zoom: 2
@@ -46,10 +69,3 @@ function createMarkers(response) {
 };
 
 //Events
-
-var countryGross = []
-var countryBudget = []
-
-
-for (var g = 0; g < country.length; g++;){
-  var gross = 0;
