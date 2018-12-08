@@ -6,15 +6,15 @@ var url = "http://localhost:5000/data";
 
 
 // Define SVG area dimensions
-var svgWidth = 900;
-var svgHeight = 900;
+var svgWidth = 1000;
+var svgHeight = 1000;
 
 // Define the chart's margins as an object
 var chartMargin = {
   top: 30,
   right: 30,
   bottom: 30,
-  left: 100
+  left: 30
 };
 
 // Define dimensions of the chart area
@@ -51,8 +51,8 @@ var grossList = data.map(item => item.gross);
 console.log(grossList);
 var yearList = data.map(item => item.title_year);
 
-// desired space between each bar
- //var barSpacing = 10; 
+
+ //var barSpacing = 10; // desired space between each bar
 // scale y to chart height
 var yScale = d3.scaleLinear()
   .domain([0, d3.max(grossList)])
@@ -62,7 +62,7 @@ var yScale = d3.scaleLinear()
 var xScale = d3.scaleBand()
   .domain(yearList)
   .range([0, chartWidth])
-  .padding(100);
+  .padding(0.05);
 
 // create axes
 var yAxis = d3.axisLeft(yScale);
