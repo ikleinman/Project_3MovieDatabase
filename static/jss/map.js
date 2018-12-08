@@ -30,8 +30,15 @@ createMap();
 //Creating Markers with data
 function createMarkers(response) {
 
-  // Pull the "" property off of response.data
-  var locations = response.data.Latitude,;
+  var movie_markers = []
 
-  // Initialize an array to hold markers
-  var markers = [];
+  for (var i = 0; i < response.length; i++) {
+    var location = response[i].location;
+
+    if (location) {
+      L.marker([location.Latitude[1], location.Longitude[0]]).addTo(map);
+      movieMarker.push(movie_markers);
+    }
+}
+
+};
