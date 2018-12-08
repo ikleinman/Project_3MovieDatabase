@@ -4,6 +4,7 @@ var data = d3.json(url).then(function(data) {
   console.log(data);
 
   createMarkers(data)
+  
  })
 
  //console.log(data);
@@ -43,3 +44,12 @@ function createMarkers(response) {
 }
 
 };
+
+//Events
+
+var countryGross = []
+var countryBudget = []
+
+
+for (var g = 0; g < country.length; g++;){
+  var gross = 0;
