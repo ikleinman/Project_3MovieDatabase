@@ -14,23 +14,28 @@ d3.json(url).then(function(data) {
     return rv;
   }, {});
 };
-var groubedByCountry=groupBy(saveData, 'country')
-console.log(groubedByCountry);
+var groupedByCountry=groupBy(saveData, 'country')
+console.log(groupedByCountry);
 
 //Looping through country, gross, and budget for tooltip
-  var countryGross = []
-  var countryBudget = []
 
+var outputObject = [];
 
-  for (var g = 0; g < saveData.length; g++){
-    var unicorn = saveData[g]['gross']
+ var unicorn = saveData[g]['country']
+
+  groupedByCountry.foreach(function (country){
     var gross = 0;
-    countryGross.push(saveData[g]['gross'])
-  };
-  console.log(countryGross);
- })
+    var budget = 0;
+    country.foreach(function(row){
+      gross += row.gross;
+      budget += row.budget;
+  });
+  outputObject.push({'country': country,
+                     'gross': gross,
+                      'budget': budget});
 
- //console.log(data);
+});
+console.log(outputObject);
 //create map
   var map = L.map("map-id", {
     center: [15.3265, -76.157],
@@ -51,7 +56,7 @@ function createMap(movie_locations){
 
 
 createMap();
-
+});
 //Creating Markers with data
 function createMarkers(response) {
 
@@ -66,6 +71,4 @@ function createMarkers(response) {
     }
 }
 
-};
-
-//Events
+}
