@@ -8,8 +8,6 @@
   <!--link type="text/css" rel="stylesheet" href="reset.css"Importing leaflet-->
 
   <link type="text/css" rel="stylesheet" href="css/style.css">
-  <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css"
-
 </head>
 
 <body>
@@ -57,25 +55,65 @@
             <p> After assembling the dataset, we used SQLite to set up a database to serve our data to our Visualizations.</p>
           </section>
       </div>
+     </div> 
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+            <aside class="filters">
+              <div class="panel panel-default">
+                <div class="panel-heading">Filter Search</div>
+                <div class="panel-body">
+                  <form>
+                    <div class="form-group">
+                      <ul class="list-group" id="filters">
+                        <li class="filter list-group-item">
+                          <label for="date">Enter Director's Name</label>
+                          <input class="form-control" id="director_search" type="text" placeholder="James Cameron">
+                        </li>
+                      </ul>
+                    </div>
+                    <button id="filter-btn" type="submit" class="btn btn-default">Filter Table</button>
+                  </form>
+                </div>
+              </div>
+            </aside>
+          </div>
        <!-- The div that holds our tabe -->
        <div class="col-md-10">
         <div id="table-area">
-          <table id="director-table" >
+          <table id="director-table" class="table table-striped">
             <thead>
               <tr>
-                <th class="table-head">Movie Title</th>
-                <th class="table-head">Director Name</th>
-                <th class="table-head">Gross</th>
-                <th class="table-head">Genres</th>
-                <th class="table-head">Country</th>
-                <th class="table-head">Content Rating</th>
-                <th class="table-head">Budget</th>
-                <th class="table-head">Title Year</th>
+                
+                
+                
+                
+                
+               
                 <th class="table-head">Latitude</th>
-                <th class="table-head">Longitude</th>
+                 <th class="table-head">Longitude</th>
+                
+                <th class="table-head">Budget</th>
+                <th class="table-head">Content Rating</th>
+                <th class="table-head">Country</th>
+                <th class="table-head">Director Name</th>
+                <th class="table-head">Genres</th>              
+                <th class="table-head">Gross</th>
+                <th class="table-head">Movie Title</th>
+                <th class="table-head">Title Year</th>
+                
+                
+                
+                
+                
+                
+                
               </tr>
             </thead>
             <tbody></tbody>
+            <tfoot>
+               
+            </tfoot>
           </table>
         </div>
       </div>
@@ -103,7 +141,8 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-  <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+  
+
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="jss/director.js"></script>
 
