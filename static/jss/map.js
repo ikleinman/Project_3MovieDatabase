@@ -1,9 +1,9 @@
 var url = "http://localhost:5000/data";
-var dirData = d3.json(url).then(function(data) {
+var data = d3.json(url).then(function(data) {
    console.log(data);
  })
 
- console.log(dirData);
+ console.log(data);
 
 
 function createMap(movie_locations){
@@ -26,3 +26,12 @@ L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 
 
 createMap();
+
+//Creating Markers with data
+function createMarkers(response) {
+
+  // Pull the "" property off of response.data
+  var locations = response.data.Latitude,;
+
+  // Initialize an array to hold markers
+  var markers = [];
