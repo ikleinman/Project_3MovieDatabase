@@ -1,20 +1,20 @@
 // Dataset we will be using to set the height of our rectangles.
-var url = "http://127.0.0.1:5000/data";
+var url = "v";
  //d3.json(url).then(function(data) {
 //   console.log(data);
 // });
 
 
 // Define SVG area dimensions
-var svgWidth = 1000;
-var svgHeight = 1000;
+var svgWidth = 900;
+var svgHeight = 900;
 
 // Define the chart's margins as an object
 var chartMargin = {
   top: 30,
   right: 30,
   bottom: 30,
-  left: 30
+  left: 100
 };
 
 // Define dimensions of the chart area
@@ -51,8 +51,8 @@ var grossList = data.map(item => item.gross);
 console.log(grossList);
 var yearList = data.map(item => item.title_year);
 
-
- //var barSpacing = 10; // desired space between each bar
+// desired space between each bar
+ //var barSpacing = 10; 
 // scale y to chart height
 var yScale = d3.scaleLinear()
   .domain([0, d3.max(grossList)])
@@ -62,7 +62,7 @@ var yScale = d3.scaleLinear()
 var xScale = d3.scaleBand()
   .domain(yearList)
   .range([0, chartWidth])
-  .padding(0.05);
+  .padding(100);
 
 // create axes
 var yAxis = d3.axisLeft(yScale);
