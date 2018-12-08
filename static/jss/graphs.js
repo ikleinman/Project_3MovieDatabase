@@ -1,5 +1,5 @@
 // Dataset we will be using to set the height of our rectangles.
-var url = "v";
+var url = "http://localhost:5000/data";
  //d3.json(url).then(function(data) {
 //   console.log(data);
 // });
