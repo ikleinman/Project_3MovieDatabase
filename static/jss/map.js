@@ -38,7 +38,7 @@ var outputObject = [];
     value.forEach(function(row){
       console.log(row.gross);
       gross += row.gross;
-      budget += row.budget;
+      budget += parseFloat(row.budget);
   });
   outputObject.push({'country': key,
                      'gross': gross,
