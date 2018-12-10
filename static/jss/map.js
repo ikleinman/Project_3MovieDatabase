@@ -79,3 +79,6 @@ function createMarkers(response) {
 }
 
 }
+var marker = createMarkers(response);
+//Tool Tip pop up
+  marker.bindPopup("<h3>Country: " + outputObject.country + "<h3><h3>Gross Earnings: " + outputObject.gross + "<h3><h3>Total Budget: " + outputObject.budget).addTo(map);
