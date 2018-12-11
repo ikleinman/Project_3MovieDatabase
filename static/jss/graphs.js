@@ -1,5 +1,3 @@
-
-
 // Dataset we will be using to set the height of our rectangles.
 var url = "http://localhost:5000/data";
  //d3.json(url).then(function(data) {
@@ -9,15 +7,15 @@ var url = "http://localhost:5000/data";
 function makeResponsive() {
 
 // Define SVG area dimensions
-var svgWidth = 1500;
-var svgHeight = 1000;
+var svgWidth = 2000;
+var svgHeight = 700;
 
 // Define the chart's margins as an object
 var chartMargin = {
   top: 50,
   right: 50,
   bottom: 50,
-  left: 50
+  left: 125
 };
 
 // Define dimensions of the chart area
@@ -34,12 +32,15 @@ var svg = d3
 // Append a group to the SVG area and shift ('translate') it to the right and down to adhere
 // to the margins set in the "chartMargin" object.
 var chartGroup = svg.append("g")
-  .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
-
+  .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`)
 
 
 // Load data from flask server
 d3.json(url).then(function(data, error) {
+
+data.sort(function(a, b){
+    return a["title_year"]-b["title_year"];
+});
 
   // Log an error if one exists
   if (error) return console.warn(error);
@@ -58,6 +59,9 @@ var yearList = data.map(item => item.title_year);
 var movieTitle = data.map(item => item.movie_title);
 console.log(movieTitle);
 
+
+console.log(yearList);
+
  //var barSpacing = 10; // desired space between each bar
 // scale y to chart height
 var yScale = d3.scaleLinear()
@@ -71,8 +75,10 @@ var xScale = d3.scaleBand()
   .padding(.25);
 
 // create axes
-var yAxis = d3.axisLeft(yScale);
-var xAxis = d3.axisBottom(xScale);
+var yAxis = d3.axisLeft(yScale)
+.scale(yScale);
+var xAxis = d3.axisBottom(xScale)
+.scale(xScale);
 
 // set x to the bottom of the chart
 chartGroup.append("g")
@@ -101,7 +107,7 @@ chartGroup.append("g")
   .attr("height", d => chartHeight - yScale(d.gross))
         // event listener for onclick event
         .on("click", function(d, i) {
-          alert(`Hey! You clicked bar ${movieTitle[i]}!`);
+          alert(`You clicked ${movieTitle[i]}!`);
         })
         // event listener for mouseover
         .on("mouseover", function() {
@@ -114,27 +120,6 @@ chartGroup.append("g")
                 .attr("fill", "green");
         });
       
-
-        // Step 1: Initialize Tooltip
-     var toolTip = d3.tip()
-     .attr("class", "tooltip")
-     .offset([80, -60])
-     .html(function(d) {
-       return (`test`);
-     });
-
-   // Step 2: Create the tooltip in chartGroup.
-   chartGroupToolTip.call(toolTip);
-
-   // Step 3: Create "mouseover" event listener to display tooltip
-   chartGroupToolTip.on("mouseover", function(d) {
-     toolTip.show(d, this);
-   })
-   // Step 4: Create "mouseout" event listener to hide tooltip
-     .on("mouseout", function(d) {
-       toolTip.hide(d);
-     });
-
 });
 
   }
