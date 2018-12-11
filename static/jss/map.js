@@ -4,7 +4,7 @@
     zoom: 2
   });
 
-
+var outputObject = [];
 
 var url = "http://localhost:5000/data";
 
@@ -28,7 +28,7 @@ console.log(groupedByCountry);
 
 //Looping through country, gross, and budget for tooltip
 
-var outputObject = [];
+
 
  //var unicorn = saveData[g]['country']
   for(const [key, value] of Object.entries(groupedByCountry)){
@@ -68,17 +68,28 @@ createMap();
 //Creating Markers with data
 function createMarkers(response) {
 
-
+var tooltips = [];
   for (var i = 0; i < response.length; i++) {
     var location = response[i];
 
-    if (location) {
-      L.marker([location.Longitude, location.Latitude]).addTo(map);
+    //if (location) {
+      var marker = L.marker([location.Longitude, location.Latitude]).addTo(map);
+        marker.bindPopup("<h3>Country: " + outputObject.country + "<h3><h3>Gross Earnings: " + outputObject.gross + "<h3><h3>Total Budget: " + outputObject.budget);
 
-    }
+    tooltips.push(marker);
+    createMap(L.layerGroup(tooltips));
 }
 
 }
-var marker = createMarkers(response);
+
 //Tool Tip pop up
-  marker.bindPopup("<h3>Country: " + outputObject.country + "<h3><h3>Gross Earnings: " + outputObject.gross + "<h3><h3>Total Budget: " + outputObject.budget).addTo(map);
+
+
+//marker.bindTooltip("<h3>Country: " + outputObject.country + "<h3><h3>Gross Earnings: " + outputObject.gross + "<h3><h3>Total Budget: " + outputObject.budget);
+
+
+
+
+
+//var bikeMarker = L.marker([station.lat, station.lon])
+      //.bindPopup("<h3>" + station.name + "<h3><h3>Capacity: " + station.capacity + "<h3>");
