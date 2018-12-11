@@ -42,7 +42,8 @@ console.log(groupedByCountry);
       gross += row.gross;
       budget += parseFloat(row.budget);
       lat = row.Latitude;
-      long = row. Longitude;
+      long = row.Longitude;
+
   });
   outputObject.push({'country': key,
                      'gross': gross,
@@ -70,40 +71,19 @@ createMap();
 });
 
 //Creating Markers with data
-function createMarkers(response) {
+function createMarkers(outputObject) {
 
 var tooltips = [];
-  for (var i = 0; i < response.length; i++) {
-    var location = response[i];
+  for (var i = 0; i < outputObject.length; i++) {
+    var location = outputObject[i];
 
     //if (location) {
       var marker = L.marker([location.Longitude, location.Latitude]).addTo(map);
         marker.bindPopup("<h3>Country: " + location.country + "<h3><h3>Gross Earnings: " + location.gross + "<h3><h3>Total Budget: " + location.budget);
-        
+
     tooltips.push(marker);
     createMarkers(L.layerGroup(tooltips));
 
 }
 
 }
-
-// for (var i=0; i<markers.length; i++) {
-//
-//
-//             var popupText = markers[i][2];
-//
-//              var markerLocation = new L.LatLng(lat, lon);
-//              var marker = new L.Marker(markerLocation);
-//              map.addLayer(marker);
-//
-//              marker.bindPopup(popupText);
-//
-//          }
-//
-//       }
-//looping through outputObject Data
-
-//Tool Tip pop up
-
-
-//marker.bindTooltip("<h3>Country: " + outputObject.country + "<h3><h3>Gross Earnings: " + outputObject.gross + "<h3><h3>Total Budget: " + outputObject.budget);
