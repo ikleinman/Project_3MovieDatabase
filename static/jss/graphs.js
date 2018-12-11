@@ -27,12 +27,15 @@ var svg = d3
   .select("body")
   .append("svg")
   .attr("height", svgHeight)
-  .attr("width", svgWidth);
+  .attr("width", svgWidth)
+  .call(d3.zoom().on("zoom", function () {
+    svg.attr("transform", d3.event.transform)}));
 
 // Append a group to the SVG area and shift ('translate') it to the right and down to adhere
 // to the margins set in the "chartMargin" object.
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`)
+
 
 
 // Load data from flask server
@@ -59,8 +62,11 @@ var yearList = data.map(item => item.title_year);
 var movieTitle = data.map(item => item.movie_title);
 console.log(movieTitle);
 
-
 console.log(yearList);
+
+var content_Rating = data.map(item => item.content_rating);
+console.log(content_Rating);
+
 
  //var barSpacing = 10; // desired space between each bar
 // scale y to chart height
@@ -120,12 +126,13 @@ chartGroup.append("g")
                 .attr("fill", "green");
         });
       
+
 });
 
   }
+
+
 makeResponsive();
 
-// Event listener for window resize.
-// When the browser window is resized, makeResponsive() is called.
-//d3.select(window).on("resize", makeResponsive);
+
 
