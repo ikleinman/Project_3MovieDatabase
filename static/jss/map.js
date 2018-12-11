@@ -34,15 +34,21 @@ console.log(groupedByCountry);
   for(const [key, value] of Object.entries(groupedByCountry)){
     var gross = 0;
     var budget = 0;
+    var lat = 0;
+    var long = 0;
     console.log(value);
     value.forEach(function(row){
       console.log(row.gross);
       gross += row.gross;
       budget += parseFloat(row.budget);
+      lat = row.Latitude;
+      long = row. Longitude;
   });
   outputObject.push({'country': key,
                      'gross': gross,
-                      'budget': budget});
+                      'budget': budget,
+                      'Lat': lat,
+                      'long': long});
 
 }
 
@@ -58,9 +64,7 @@ function createMap(movie_locations){
   }).addTo(map);
 
 
-};
-
-
+}
 
 createMap();
 });
@@ -74,22 +78,32 @@ var tooltips = [];
 
     //if (location) {
       var marker = L.marker([location.Longitude, location.Latitude]).addTo(map);
-        marker.bindPopup("<h3>Country: " + outputObject.country + "<h3><h3>Gross Earnings: " + outputObject.gross + "<h3><h3>Total Budget: " + outputObject.budget);
-
+        marker.bindPopup("<h3>Country: " + location.country + "<h3><h3>Gross Earnings: " + location.gross + "<h3><h3>Total Budget: " + location.budget);
+        
     tooltips.push(marker);
-    createMap(L.layerGroup(tooltips));
+    createMarkers(L.layerGroup(tooltips));
+
 }
 
 }
+
+// for (var i=0; i<markers.length; i++) {
+//
+//
+//             var popupText = markers[i][2];
+//
+//              var markerLocation = new L.LatLng(lat, lon);
+//              var marker = new L.Marker(markerLocation);
+//              map.addLayer(marker);
+//
+//              marker.bindPopup(popupText);
+//
+//          }
+//
+//       }
+//looping through outputObject Data
 
 //Tool Tip pop up
 
 
 //marker.bindTooltip("<h3>Country: " + outputObject.country + "<h3><h3>Gross Earnings: " + outputObject.gross + "<h3><h3>Total Budget: " + outputObject.budget);
-
-
-
-
-
-//var bikeMarker = L.marker([station.lat, station.lon])
-      //.bindPopup("<h3>" + station.name + "<h3><h3>Capacity: " + station.capacity + "<h3>");
