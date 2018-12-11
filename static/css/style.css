@@ -5,6 +5,10 @@ body,
   padding: 0;
   margin: 0;
 }
+#header {
+  font: 45px sans-serif;
+  color: black;
+
 
 .bar {
   fill: orange;
