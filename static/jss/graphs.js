@@ -113,7 +113,7 @@ chartGroup.append("g")
   .attr("height", d => chartHeight - yScale(d.gross))
         // event listener for onclick event
         .on("click", function(d, i) {
-          alert(`You clicked ${movieTitle[i]} rated ${content_Rating[i]}!`);
+          alert(`You clicked ${movieTitle[i]} rated${content_Rating[i]} and had a gross margin of ${grossList[i]}!`);
         })
         // event listener for mouseover
         .on("mouseover", function() {

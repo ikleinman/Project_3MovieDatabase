@@ -1,20 +1,28 @@
+
 html,
 body,
+
 #map-id {
   height: 100%;
   padding: 0;
   margin: 0;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5a2176c4cd993c88e038d64afee2bb7263591cb8
 
 
 .bar {
   fill: orange;
 }
 
+
+
 .bar:hover {
   fill: green;
 }
+
 
 .tooltip {
   position: absolute;
@@ -27,11 +35,14 @@ body,
   background: blue;
   border: 0;
   border-radius: 10px;
+
 }
+
 
 .axis { font: 14px sans-serif; }
 
-.d3-tip {
+
+.d3-tip{
   line-height: 1;
   font-family: sans-serif;
   padding: 5px;
