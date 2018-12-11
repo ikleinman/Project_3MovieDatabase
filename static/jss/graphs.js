@@ -102,7 +102,7 @@ chartGroup.append("g")
   //var barWidth = (chartWidth - (barSpacing * (data.length - 1))) / data.length;
 
   // Create code to build the bar chart using the movie Data.
-  chartGroup.selectAll(".bar")
+ var group = chartGroup.selectAll(".bar")
     .data(data)
     .enter()
     .append("rect")
@@ -113,7 +113,7 @@ chartGroup.append("g")
   .attr("height", d => chartHeight - yScale(d.gross))
         // event listener for onclick event
         .on("click", function(d, i) {
-          alert(`You clicked ${movieTitle[i]}!`);
+          alert(`You clicked ${movieTitle[i]} rated ${content_Rating[i]}!`);
         })
         // event listener for mouseover
         .on("mouseover", function() {
@@ -125,12 +125,32 @@ chartGroup.append("g")
           d3.select(this)
                 .attr("fill", "green");
         });
-      
+    
+       // Step 1: Append a div to the body to create tooltips, assign it a class
+  // =======================================================
+  // Step 1: Append tooltip div
+  var toolTip = d3.select("body")
+  .append("div")
+  .classed("tooltip", true);
+
+// Step 2: Add an onmouseover event to display a tooltip
+// ========================================================
+group.on("mouseover", function(d) {
+  toolTip.style("display", "block")
+      .html(
+        `<strong>${d.movieTitle}<strong><hr>medal(s) won`)
+      .style("left", d3.event.pageX + "px")
+      .style("top", d3.event.pageY + "px");
+})
+  // Step 3: Add an onmouseout event to make the tooltip invisible
+  .on("mouseout", function() {
+    toolTip.style("display", "none");
+  });   
+
 
 });
 
   }
-
 
 makeResponsive();
 
